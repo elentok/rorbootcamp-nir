@@ -24,29 +24,30 @@ class PizzaOrder< BasicOrder
 
 	def order
 		puts "Your Name :" 
-	    	@name = gets 
+	    	@name = gets.chomp
 		puts "Your Phone number:" 
-	    	@phone = gets 
+	    	@phone = gets.chomp 
 		puts "Your topings:" 
-	    	@topings = gets 
+	    	@topings = gets.chomp 
 		puts "amount of pizzas:" 
-	    	@amount= gets 
+	    	@amount= Integer(gets.chomp)
 		@to_s
 	end
 	
 	def to_s
 		if(@amount > 1)
-			result = "#{@amount} pizzas with "#{@topings}\n"
+			result = "#{@amount} pizzas with #{@topings}\n"
 		elsif(@amount == 1)
-			result = "1 pizza with "#{@topings}\n"
-		result += "#{@name},#{phone}" 
+			result = "1 pizza with #{@topings}\n"
 		end
+
+		result += "#{@name},#{phone}" 
 	end
 end
 
 if __FILE__ == $0
         pizOrder = PizzaOrder.new
 	pizOrder.order
-	pizOrder.to_s
+	puts pizOrder.to_s
 
 end
