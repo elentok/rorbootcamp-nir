@@ -20,21 +20,33 @@ class PizzaOrder< BasicOrder
 	attr_accessor :topings
 	attr_accessor :amount
 
-	def initialize(name,phone,topings,amount)
-	    @name = name
-	    @phone= phone 
-	    @topings =topings 
-	    @amount = amount
-	end
 	
 
 	def order
 		puts "Your Name :" 
+	    	@name = gets 
+		puts "Your Phone number:" 
+	    	@phone = gets 
+		puts "Your topings:" 
+	    	@topings = gets 
+		puts "amount of pizzas:" 
+	    	@amount= gets 
+		@to_s
+	end
+	
+	def to_s
+		if(@amount > 1)
+			result = "#{@amount} pizzas with "#{@topings}\n"
+		elsif(@amount == 1)
+			result = "1 pizza with "#{@topings}\n"
+		result += "#{@name},#{phone}" 
+		end
 	end
 end
 
 if __FILE__ == $0
-  pizOrder = PizzaOrder.new("Nir","0578170214","onion",3)
-  pizaabur= Pizzaburger.new
-  pizaabur.menu
+        pizOrder = PizzaOrder.new
+	pizOrder.order
+	pizOrder.to_s
+
 end
