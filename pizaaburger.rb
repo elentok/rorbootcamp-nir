@@ -26,6 +26,11 @@ class PizzaOrder< BasicOrder
 	    @topings =topings 
 	    @amount = amount
 	end
+	
+
+	def order
+		puts "Your Name :" 
+	end
 end
 
 if __FILE__ == $0
