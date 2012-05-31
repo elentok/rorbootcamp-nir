@@ -1,5 +1,12 @@
+load 'inputValidation.rb'
+load 'orders.rb'
 class Pizzaburger
-	def menu 
+
+  def initialize
+    @orders = Array.new
+  end
+
+  def printMenu
 		puts "Welcome to PizaaBurger"
 		puts "What would you like to do???"
 		puts "----------------------------"
@@ -8,57 +15,34 @@ class Pizzaburger
 		puts "3. List all orders"
 		puts "4. Cancel an order"
 		puts "5. Exit"
+  end
+
+
+	def menu 
+    printMenu
+    choice = readInteger
+
+    case choice
+    when 1
+      newpizza = PizzaOrder.new.order
+      @orders << newpizza
+    when 2
+      newburger = BurgerOrder.new.order
+      @orders << newburger
+    when 3
+      puts "these are all the orders"
+      @orders.each do |order| 
+        puts order.to_s
+      end
+    else
+      puts "user wants something else"
+    end
+    menu
 	end
-end
 
-class BasicOrder
-	attr_accessor :name
-	attr_accessor :phone
-end
-
-class PizzaOrder< BasicOrder 
-	attr_accessor :topings
-	attr_accessor :amount
-
-	def readInteger
-		shouldReadInt = true
-		while shouldReadInt do
-			input = gets.chomp
-			if input =~ /^[\d]+(\.[\d]+){0,1}$/
-				shouldReadInt = false
-			else
-				puts "please enter a valid number" 
-			end
-		end
-		return Integer(input)
-	end
-	
-
-	def order
-		puts "Your Name :" 
-	    	@name = gets.chomp
-		puts "Your Phone number:" 
-	    	@phone = gets.chomp 
-		puts "Your topings:" 
-	    	@topings = gets.chomp 
-		puts "amount of pizzas:" 
-	    	@amount= readInteger
-	end
-	
-	def to_s
-		if(@amount > 1)
-			result = "#{@amount} pizzas with #{@topings}\n"
-		elsif(@amount == 1)
-			result = "1 pizza with #{@topings}\n"
-		end
-
-		result += "#{@name},#{phone}" 
-	end
 end
 
 if __FILE__ == $0
-        pizOrder = PizzaOrder.new
-	pizOrder.order
-	puts pizOrder.to_s
-
+  pizpurg = Pizzaburger.new
+  pizpurg.menu
 end
