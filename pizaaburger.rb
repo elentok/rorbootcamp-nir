@@ -1,7 +1,6 @@
 load 'inputValidation.rb'
 load 'orders.rb'
 class Pizzaburger
-
   def initialize
     @orders = Array.new
   end
@@ -57,6 +56,7 @@ class Pizzaburger
     else
       puts "user wants something else"
     end
+
     menu
 	end
 
