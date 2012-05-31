@@ -16,6 +16,25 @@ class Pizzaburger
 		puts "4. Cancel an order"
 		puts "5. Exit"
   end
+  
+  def listAllOrders
+      puts "The current orders Are"
+      @orders.each_with_index do |order,i| 
+        puts "#{i+1})" + order.to_s
+      end
+  end
+  
+  def cancelOrder
+    listAllOrders
+    puts "Which order would you like to cancel"
+    orderToCancel = readInteger
+
+    if orderToCancel > @orders.length
+      puts "can't find order with number #{orderToCancel}"
+    else
+      @orders.delete_at(orderToCancel - 1)
+    end
+  end
 
 
 	def menu 
@@ -30,10 +49,11 @@ class Pizzaburger
       newburger = BurgerOrder.new.order
       @orders << newburger
     when 3
-      puts "these are all the orders"
-      @orders.each do |order| 
-        puts order.to_s
-      end
+      listAllOrders
+    when 4 
+      cancelOrder
+    when 5 
+      Process.exit
     else
       puts "user wants something else"
     end
