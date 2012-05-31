@@ -20,6 +20,18 @@ class PizzaOrder< BasicOrder
 	attr_accessor :topings
 	attr_accessor :amount
 
+	def readInteger
+		shouldReadInt = true
+		while shouldReadInt do
+			input = gets.chomp
+			if input =~ /^[\d]+(\.[\d]+){0,1}$/
+				shouldReadInt = false
+			else
+				puts "please enter a valid number" 
+			end
+		end
+		return Integer(input)
+	end
 	
 
 	def order
@@ -30,8 +42,7 @@ class PizzaOrder< BasicOrder
 		puts "Your topings:" 
 	    	@topings = gets.chomp 
 		puts "amount of pizzas:" 
-	    	@amount= Integer(gets.chomp)
-		@to_s
+	    	@amount= readInteger
 	end
 	
 	def to_s
