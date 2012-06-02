@@ -54,7 +54,7 @@ class Pizzaburger
     when 5 
       Process.exit
     else
-      puts "user wants something else"
+      puts "please choose the relevant option"
     end
 
     menu
