@@ -1,9 +1,20 @@
 load 'inputValidation.rb'
 load 'orders.rb'
+require 'yaml'
+
 class Pizzaburger
   def initialize
-    @orders = Array.new
   end
+
+  def loadOrdersFromYamlFile
+    @orders = begin
+      YAML.load(File.open(ORDERSYAMLFILE_CONST))
+    rescue ArgumentError => e
+      puts "Could not parse YAML: #{e.message}"
+    end
+  end
+
+  ORDERSYAMLFILE_CONST = 'orders.yaml'
 
   def printMenu
 		puts "Welcome to PizaaBurger"
@@ -52,6 +63,7 @@ class Pizzaburger
     when 4 
       cancelOrder
     when 5 
+      File.open(ORDERSYAMLFILE_CONST, "w") {|f| f.write(@orders.to_yaml) }
       Process.exit
     else
       puts "please choose the relevant option"
@@ -64,5 +76,6 @@ end
 
 if __FILE__ == $0
   pizpurg = Pizzaburger.new
+  pizpurg.loadOrdersFromYamlFile
   pizpurg.menu
 end

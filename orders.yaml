@@ -1,0 +1,11 @@
+---
+- !ruby/object:PizzaOrder
+  name: nir
+  phone: '2'
+  topings: '3'
+  amount: 3
+- !ruby/object:BurgerOrder
+  name: gil naor
+  phone: '432'
+  taste: big
+  fries: n
